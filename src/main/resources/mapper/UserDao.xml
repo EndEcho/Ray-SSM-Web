@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ray.dao.UserDao">
+    <resultMap id="defuaresultMap" type="com.ray.model.User">
+        <id column="userId" property="userId"></id>
+        <result column="account" property="account"></result>
+        <result column="userName" property="userName"></result>
+
+        <result column="userIcon" property="userIcon"></result>
+
+        <result column="userPwd" property="userPwd"></result>
+        <result column="userPwdsalt" property="userPwdsalt"></result>
+        <result column="userEmail" property="userEmail"></result>
+        <result column="userTele" property="userTele"></result>
+        <result column="userBirthday" property="userBirthday"></result>
+        <result column="userIdnum" property="userIdnum"></result>
+        <result column="userGander" property="userGander"></result>
+
+        <result column="role" property="role"></result>
+        <result column="registerTime" property="registerTime"></result>
+    </resultMap>
+    <!--在xml有几点需要注意：namespace中对应该接口地址，type是对应实体，其实这些都在配置文
+    件中有配置过的，不能随意修改，如果不对会导致mybatis执行出错-->
+
+    <!--于接口对应的方法-->
+    <select id="getAllUser" resultMap="defuaresultMap">
+    SELECT
+    *
+    FROM user;
+    </select>
+
+    <select id="getUserById" parameterType="com.ray.model.User" resultMap="defuaresultMap">
+        SELECT
+        *
+        FROM user
+        WHERE
+        user.userId=#{userId};
+    </select>
+
+    <select id="getUserByAccount" parameterType="com.ray.model.User" resultMap="defuaresultMap">
+        SELECT
+        *
+        FROM user
+        WHERE
+        user.account=#{account};
+    </select>
+
+
+    <insert id="addUser" parameterType="com.ray.model.User" useGeneratedKeys="true">
+        insert into user
+        (account,userName,userIcon,userPwd,
+        userPwdsalt,userEmail,userTele,userBirthday,
+        userIdnum,userGander,role,registerTime)
+        values
+        (#{account},#{userName},#{userIcon},#{userPwd},
+        #{userPwdsalt},#{userEmail},#{userTele},#{userBirthday},
+        #{userIdnum},#{userGander},#{role},#{registerTime})
+        <selectKey resultType="java.math.BigInteger" order="AFTER" keyProperty="userId">
+            SELECT LAST_INSERT_ID() AS userId
+        </selectKey>
+    </insert>
+
+    <delete id="deleteUserById">
+        DELETE FROM user WHERE user.userId=#{userId};
+    </delete>
+
+    <update id="updateUser" parameterType="com.ray.model.User">
+        UPDATE user
+        <set>
+            <if test="account != null">account=#{account}</if>
+            <if test="userName != null">userName=#{userName}</if>
+            <if test="userIcon != null">userIcon=#{userIcon}</if>
+            <if test="userPwd != null">userPwd=#{userPwd}</if>
+            <if test="userPwdsalt != null">userPwdsalt=#{userPwdsalt}</if>
+            <if test="userEmail != null">userEmail=#{userEmail}</if>
+            <if test="userTele != null">userTele=#{userTele}</if>
+            <if test="userIdnum != null">userIdnum=#{userIdnum}</if>
+            <if test="userGander != null">userGander=#{userGander}</if>
+            <if test="role != null">role=#{role}</if>
+        </set>
+        WHERE userId=#{userId}
+    </update>
+
+
+</mapper>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ray.dao.CenterDao">
+    <resultMap id="defuaresultMap" type="com.ray.model.Center">
+        <id column="centerId" property="centerId"></id>
+        <result column="centerCity" property="centerCity"></result>
+        <result column="centerAddress" property="centerAddress"></result>
+        <result column="floorAmount" property="floorAmount"></result>
+        <result column="storesAmount" property="storesAmount"></result>
+        <result column="centerIntroduction" property="centerIntroduction"></result>
+        <result column="isFinished" property="isFinished"></result>
+        <result column="centerImage" property="centerImage"></result>
+        <result column="centerMap" property="centerMap"></result>
+        <result column="parkingPlace" property="parkingPlace"></result>
+        <result column="centerLocation" property="centerLocation"></result>
+    </resultMap>
+
+
+    <select id="getAllCenter" resultMap="defuaresultMap">
+        SELECT
+        *
+        FROM center;
+    </select>
+
+    <select id="getCenterCount" resultType="int">
+    SELECT Count(centerId) FROM center
+    </select>
+
+    <select id="getEmptyCenterCount" resultType="int">
+        SELECT COUNT(centerId) FROM center WHERE
+    </select>
+
+    <insert id="addNewCenter" parameterType="com.ray.model.Center" useGeneratedKeys="true">
+        insert into center
+        (
+        centerCity,
+        centerAddress,
+        floorAmount,
+        storesAmount,
+        centerIntroduction,
+        isFinished,
+        centerImage,
+        floorMap,
+        parkingPlace,
+        centerLocation
+        )
+        values
+        (
+        #{centerCity},
+        #{centerAddress},
+        #{floorAmount},
+        #{storesAmount},
+        #{centerIntroduction},
+        #{isFinished},
+        #{centerImage},
+        #{floorMap},
+        #{parkingPlace},
+        #{centerLocation}
+        )
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="centerId">
+            SELECT LAST_INSERT_ID() AS centerId
+        </selectKey>
+    </insert>
+
+
+</mapper>

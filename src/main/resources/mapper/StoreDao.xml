@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ray.dao.StoreDao">
+    <resultMap id="defuaresultMap" type="com.ray.model.Store">
+        <id column="storeId" property="storeId"></id>
+        <result column="centerId" property=""></result>
+        <result column="storeArea" property=""></result>
+        <result column="storePrice" property=""></result>
+        <result column="storeState" property=""></result>
+        <result column="storeFloor" property=""></result>
+        <result column="storeType" property=""></result>
+        <result column="storeIntroduction" property=""></result>
+        <result column="storeImage" property=""></result>
+        <result column="storeBrand" property=""></result>
+    </resultMap>
+
+    <select id="getAllStore" resultMap="defuaresultMap">
+        SELECT
+        *
+        FROM store;
+    </select>
+
+</mapper>
