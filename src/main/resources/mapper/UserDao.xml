@@ -30,6 +30,10 @@
     *
     FROM user;
     </select>
+    <select id="getUserCount" resultType="java.lang.Integer">
+        SELECT COUNT(userId)FROM USER
+
+    </select>
 
     <select id="getUserById" parameterType="com.ray.model.User" resultMap="defuaresultMap">
         SELECT

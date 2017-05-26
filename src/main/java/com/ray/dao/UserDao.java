@@ -22,4 +22,6 @@ public interface UserDao {
     public Integer deleteUserById(User user);
 
     public Integer updateUser(User user);
+
+    public Integer getUserCount();
 }

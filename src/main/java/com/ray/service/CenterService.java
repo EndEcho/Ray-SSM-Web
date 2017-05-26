@@ -32,9 +32,14 @@ public class CenterService {
         return i;
     }
 
-    @Transactional
+
     public int getCenterCount() {
         int i = centerDao.getCenterCount();
+        return i;
+    }
+
+    public int getEmptyCenterCount() {
+        int i = centerDao.getEmptyCenterCount();
         return i;
     }
 }

@@ -204,7 +204,7 @@
 
 
                 <li class="header">快捷方式</li>
-                <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>添加广场</span></a></li>
+                <li><a href="/addNewCenterPage"><i class="fa fa-circle-o text-red"></i> <span>添加广场</span></a></li>
                 <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>添加商铺</span></a></li>
                 <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>添加用户</span></a></li>
 
@@ -238,7 +238,7 @@
                         <span class="info-box-icon bg-aqua"> <i class="ion ion-ios-person"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">用户</span>
-                            <span class="info-box-number"><strong>75</strong>个合作用户</span>
+                            <span class="info-box-number"><strong>${userCount}</strong>个合作用户</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -251,8 +251,8 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">广场</span>
-                            <span class="info-box-number"><strong>23</strong>个建成中心</span>
-                            <span class="info-box-number"><strong>5</strong>个在建中心</span>
+                            <span class="info-box-number">总共<strong>${cenCount}</strong>个中心</span>
+                            <span class="info-box-number">其中<strong>${emptyCount}</strong>个在建</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -268,8 +268,8 @@
                         <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">商铺</span>
-                            <span class="info-box-number"><strong>790</strong>个使用中店铺</span>
-                            <span class="info-box-number"><strong>124</strong>个空店铺</span>
+                            <span class="info-box-number">总共<strong>${storeCount}</strong>个店铺</span>
+                            <span class="info-box-number">其中<strong>${emptyStoreCount}</strong>个空</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -323,42 +323,42 @@
                                 <!-- /.col -->
                                 <div class="col-md-4">
                                     <p class="text-center">
-                                        <strong>Goal Completion</strong>
+                                        <strong>主要数据</strong>
                                     </p>
 
                                     <div class="progress-group">
-                                        <span class="progress-text">Add Products to Cart</span>
-                                        <span class="progress-number"><b>160</b>/200</span>
-
+                                        <span class="progress-text">用户<small>(总用户数)</small></span>
+                                        <span class="progress-number">${userCount}</span>
                                         <div class="progress sm">
-                                            <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                                            <div class="progress-bar progress-bar-aqua" style="width: 100%"></div>
                                         </div>
                                     </div>
                                     <!-- /.progress-group -->
                                     <div class="progress-group">
-                                        <span class="progress-text">Complete Purchase</span>
-                                        <span class="progress-number"><b>310</b>/400</span>
-
+                                        <span class="progress-text">广场<small>(完成/总数)</small></span>
+                                        <span class="progress-number"><b>${cenCount-emptyCount}</b>/${cenCount}</span>
                                         <div class="progress sm">
-                                            <div class="progress-bar progress-bar-red" style="width: 80%"></div>
+                                            <div class="progress-bar progress-bar-red"
+                                                 style="width:${(cenCount-emptyCount)/cenCount*100}%"></div>
                                         </div>
                                     </div>
                                     <!-- /.progress-group -->
                                     <div class="progress-group">
-                                        <span class="progress-text">Visit Premium Page</span>
-                                        <span class="progress-number"><b>480</b>/800</span>
+                                        <span class="progress-text">商铺<small>(使用/总数)</small></span>
+                                        <span class="progress-number"><b>${storeCount-emptyStoreCount}</b>/${storeCount}</span>
 
                                         <div class="progress sm">
-                                            <div class="progress-bar progress-bar-green" style="width: 80%"></div>
+                                            <div class="progress-bar progress-bar-green"
+                                                 style="width: ${(storeCount-emptyStoreCount)/storeCount*100}%"></div>
                                         </div>
                                     </div>
                                     <!-- /.progress-group -->
                                     <div class="progress-group">
-                                        <span class="progress-text">Send Inquiries</span>
+                                        <span class="progress-text">本月订单<small>(完成/总数)</small></span>
                                         <span class="progress-number"><b>250</b>/500</span>
 
                                         <div class="progress sm">
-                                            <div class="progress-bar progress-bar-yellow" style="width: 80%"></div>
+                                            <div class="progress-bar progress-bar-yellow" style="width: 50%"></div>
                                         </div>
                                     </div>
                                     <!-- /.progress-group -->
@@ -381,8 +381,8 @@
                                 <!-- /.col -->
                                 <div class="col-sm-3 col-xs-6">
                                     <div class="description-block border-right">
-                                        <span class="description-percentage text-yellow"><i
-                                                class="fa fa-caret-left"></i> 0%</span>
+    <span class="description-percentage text-yellow"><i
+            class="fa fa-caret-left"></i> 0%</span>
                                         <h5 class="description-header">$10,390.90</h5>
                                         <span class="description-text">TOTAL COST</span>
                                     </div>
@@ -505,8 +505,8 @@
                                 <!-- /.col -->
                                 <div class="col-md-4">
                                     <ul class="chart-legend clearfix">
-                                        <li><i class="fa fa-circle-o text-red"></i> Chrome</li>
-                                        <li><i class="fa fa-circle-o text-green"></i> IE</li>
+                                        <li><i class="fa fa-circle-o text-red"></i> ${typeList.get(0)}</li>
+                                        <li><i class="fa fa-circle-o text-green"></i> ${typeList.get(1)}</li>
                                         <li><i class="fa fa-circle-o text-yellow"></i> FireFox</li>
                                         <li><i class="fa fa-circle-o text-aqua"></i> Safari</li>
                                         <li><i class="fa fa-circle-o text-light-blue"></i> Opera</li>
@@ -538,58 +538,6 @@
                     <!-- /.box -->
                 </div>
                 <!-- /.col -->
-                <div class="col-md-12">
-                    <div class="box box-info">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">最新订单</h3>
-
-                            <div class="box-tools pull-right">
-                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
-                                        class="fa fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i
-                                        class="fa fa-times"></i></button>
-                            </div>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <div class="stable-responsive">
-                                <stable class="stable no-margin">
-                                    <thead>
-                                    <tr>
-                                        <th>订单ID</th>
-                                        <th>店铺</th>
-                                        <th>状态</th>
-                                        <th>其他</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                        <td>iPhone 6 Plus</td>
-                                        <td><span class="label label-danger">Delivered</span></td>
-                                        <td>
-                                            <div class="sparkbar" data-color="#f56954" data-height="20">
-                                                90,-80,90,70,-61,83,63
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </stable>
-                            </div>
-                            <!-- /.stable-responsive -->
-                        </div>
-                        <!-- /.box-body -->
-                        <div class="box-footer clearfix">
-                            <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">Place New
-                                Order</a>
-                            <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All
-                                Orders</a>
-                        </div>
-                        <!-- /.box-footer -->
-                    </div>
-
-                </div>
 
             </div>
             <!-- /.row -->
@@ -796,7 +744,7 @@
     </aside>
     <!-- /.control-sidebar -->
     <!-- Add the sidebar's background. This div must be placed
-         immediately after the control sidebar -->
+    immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
 
 </div>

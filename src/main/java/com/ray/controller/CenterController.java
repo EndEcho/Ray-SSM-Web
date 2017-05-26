@@ -36,9 +36,10 @@ public class CenterController {
 
     @RequestMapping(value = "/centerStateData", method = RequestMethod.GET)
     public String centerStateData(Model model) {
-        int i = centerService.getCenterCount();
-        System.out.println(i);
-        model.addAttribute("centerCount", i);
+        int centerCount = centerService.getCenterCount();
+        int emptyCenterCount = centerService.getEmptyCenterCount();
+        model.addAttribute("centerCount", centerCount);
+        model.addAttribute("emptyCenterCount", emptyCenterCount);
         return "index.jsp";
     }
 }

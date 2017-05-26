@@ -1,6 +1,8 @@
 package com.ray.controller;
 
 import com.ray.model.User;
+import com.ray.service.CenterService;
+import com.ray.service.StoreService;
 import com.ray.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +27,10 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private CenterService centerService;
+    @Autowired
+    private StoreService storeService;
 
 
     /***
@@ -39,28 +46,54 @@ public class UserController {
     public String showAllUser(Model model) {
         List<User> userList = userService.getAllUser();
         model.addAttribute("userList", userList);
-        return "pages/tables/data.jsp";
+        return "WEB-INF/jsp/pages/tables/data.jsp";
     }
 
     @RequestMapping(value = "/adminLogin", method = RequestMethod.POST)
+
     public String adminLogin(Model model) {
         List<User> userList = userService.getAllUser();
         model.addAttribute("userList", userList);
-        return "index2.jsp";
+        return "WEB-INF/jsp/index2.jsp";
     }
+
+    @RequestMapping(value = "/getUserData", method = RequestMethod.POST)
+    @ResponseBody
+    public List<User> getUserData() {
+        List<User> userList = userService.getAllUser();
+        System.out.println(userList.get(1).toString());
+        return userList;
+    }
+
 
     @RequestMapping(value = "/adminLogin", method = RequestMethod.GET)
     public String adLogin(Model model) {
         List<User> userList = userService.getAllUser();
+        Integer userCount = userService.getUserCount();
         model.addAttribute("userList", userList);
-        return "index2.jsp";
+        model.addAttribute("userCount", userCount);
+
+
+        int centerC = centerService.getCenterCount();
+        int centerEC = centerService.getEmptyCenterCount();
+        model.addAttribute("cenCount", centerC);
+        model.addAttribute("emptyCount", centerEC);
+
+        List<String> typeList = storeService.getStoreType();
+        int storeCount = storeService.getStoreCount();
+        int emptyStoreCount = storeService.getEmptyStoreCount();
+        model.addAttribute("typeList", typeList);
+        model.addAttribute("storeCount", storeCount);
+        model.addAttribute("emptyStoreCount", emptyStoreCount);
+
+        return "WEB-INF/jsp/index2.jsp";
     }
 
 
     @RequestMapping(value = "/addNewUser", method = RequestMethod.POST)
     public String addNewUser(User user) {
         System.out.println("AffectRow = " + userService.addUser(user));
-        return "index2.jsp";
+        return "WEB-INF/jsp/index2.jsp";
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)

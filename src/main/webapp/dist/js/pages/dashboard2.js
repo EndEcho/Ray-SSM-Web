@@ -94,24 +94,25 @@ $(function () {
     //-------------
     // Get context with jQuery - using jQuery's .get() method.
 
-    var userList;
+    var userList = new Array;
     $.ajax({
         type: "POST",
         async: false,
-        url: "/userJ",
+        url: "/getUserData",
         success: function (data) {
             userList = data;
         }
     });
+    console.log(userList[0]);
     //ajax取controller中的数据
     var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
     var pieChart = new Chart(pieChartCanvas);
     var PieData = [
         {
-            value: userList[0].userid / 20,
+            value: userList[0].userId,
             color: "#f56954",
             highlight: "#f56954",
-            label: "Chrome"
+            label: userList[0].userName
         },
         {
             value: 500,
@@ -168,7 +169,7 @@ $(function () {
         //String - A legend template
         legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>",
         //String - A tooltip template
-        tooltipTemplate: "<%=value %> <%=label%> users"
+        tooltipTemplate: "<%=value %> <%=label%>"
     };
     //Create pie or douhnut chart
     // You can switch between pie and douhnut using the method below.

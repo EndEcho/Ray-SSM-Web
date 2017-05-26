@@ -29,7 +29,7 @@
     </select>
 
     <select id="getEmptyCenterCount" resultType="int">
-        SELECT COUNT(centerId) FROM center WHERE
+        SELECT COUNT(centerId) FROM center WHERE isFinished = 0
     </select>
 
     <insert id="addNewCenter" parameterType="com.ray.model.Center" useGeneratedKeys="true">

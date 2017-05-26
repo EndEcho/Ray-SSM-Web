@@ -16,4 +16,6 @@ public interface CenterDao {
     public int addNewCenter(Center center);
 
     public int getCenterCount();
+
+    public int getEmptyCenterCount();
 }

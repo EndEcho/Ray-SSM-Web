@@ -18,10 +18,28 @@ public class StoreService {
 
     @Autowired
     private StoreDao storeDao;
+
     @Transactional
     public List<Store> getAllStore() {
         List<Store> storeList = new ArrayList<Store>();
         storeList = storeDao.getAllStore();
         return storeList;
+    }
+
+    public List<String> getStoreType() {
+        List<String> typeList = storeDao.getStoreType();
+        return typeList;
+    }
+
+
+    public int getEmptyStoreCount() {
+        int emptyStoreCount = storeDao.getEmptyStoreCount();
+        return emptyStoreCount;
+    }
+
+    public int getStoreCount() {
+        int storeCount = storeDao.getStoreCount();
+        return storeCount;
+
     }
 }

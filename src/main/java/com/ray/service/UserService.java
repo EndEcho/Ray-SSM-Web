@@ -56,4 +56,9 @@ public class UserService {
         return user.getUserId();
     }
 
+    public Integer getUserCount() {
+        Integer userCount = userDao.getUserCount();
+        return userCount;
+    }
+
 }

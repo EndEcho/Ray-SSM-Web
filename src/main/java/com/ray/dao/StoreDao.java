@@ -12,4 +12,10 @@ import java.util.List;
 @Repository
 public interface StoreDao {
     public List<Store> getAllStore();
+
+    public List<String> getStoreType();
+
+    public int getEmptyStoreCount();
+
+    public int getStoreCount();
 }
