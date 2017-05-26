@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -25,13 +26,31 @@ public class CenterController {
     public String showAllCenter(Model model) {
         List<Center> centerList = centerService.getAllCenter();
         model.addAttribute("centerList", centerList);
-        return "";
+        return "WEB-INF/jsp/pages/tables/dataCenter.jsp";
     }
 
-    @RequestMapping(value = "/addNewCenter", method = RequestMethod.GET)
-    public int addNewCenter(Center center) {
-        int i = centerService.addNewCenter(center);
-        return i;
+    @RequestMapping(value = "/addNewCenter", method = RequestMethod.POST)
+    public String addNewCenter(@RequestParam("centerX") double centerX,
+                               @RequestParam("centerY") double centerY,
+                               Center center, Model model) {
+        System.out.println("**********************");
+        System.out.println("**********************");
+        System.out.println("**********************");
+        System.out.println("**********************");
+        System.out.println("**********************");
+        System.out.println("**********************");
+        System.out.println("**********************");
+        System.out.println("**********************");
+        center.setCenterLocation(centerX + "," + centerY);
+        center.setIsFinished(0);
+        center.setFloorMap("image/user.jpeg");
+        center.setCenterImage("image/user.jpeg");
+        System.out.println(centerX);
+        System.out.println(centerY);
+        System.out.println(center.toString());
+        centerService.addNewCenter(center);
+//        return "WEB-INF/jsp/pages/tables/dataCenter.jsp";
+        return showAllCenter(model);
     }
 
     @RequestMapping(value = "/centerStateData", method = RequestMethod.GET)

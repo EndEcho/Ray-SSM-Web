@@ -241,56 +241,52 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th>userId</th>
-                                    <th>account</th>
-                                    <th>userName</th>
-                                    <th>userIcon</th>
-                                    <th>userPwd</th>
-                                    <th>userPwdsalt</th>
-                                    <th>userEmail</th>
-                                    <th>userTele</th>
-                                    <th>userBirthday</th>
-                                    <th>userIdnum</th>
-                                    <th>userGander</th>
-                                    <th>role</th>
-                                    <th>registerTime</th>
+                                    <th>广场ID</th>
+                                    <th>所在城市</th>
+                                    <th>地址</th>
+                                    <th>总楼层数</th>
+                                    <th>总商铺数</th>
+                                    <th>状态</th>
+                                    <th>简介</th>
+                                    <th>广场图片</th>
+                                    <th>地图图片</th>
+                                    <th>停车位</th>
+                                    <th>坐标</th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="center" items="${userList}">
+                                <c:forEach var="center" items="${centerList}">
                                     <tr>
-                                        <th>${center.userId}</th>
-                                        <th>${center.account}</th>
-                                        <th>${center.userName}</th>
-                                        <th>${center.userIcon}</th>
-                                        <th>${center.userPwd}</th>
-                                        <th>${center.userPwdsalt}</th>
-                                        <th>${center.userEmail}</th>
-                                        <th>${center.userTele}</th>
-                                        <th>${center.userBirthday}</th>
-                                        <th>${center.userIdnum}</th>
-                                        <th>${center.userGander}</th>
-                                        <th>${center.role}</th>
-                                        <th>${center.registerTime}</th>
+                                        <th>${center.centerId}</th>
+                                        <th>${center.centerCity}</th>
+                                        <th>${center.centerAddress}</th>
+                                        <th>${center.floorAmount}</th>
+                                        <th>${center.storesAmount}</th>
+                                        <th>${center.isFinished}</th>
+                                        <th>${center.centerIntroduction}</th>
+                                        <th>${center.centerImage}</th>
+                                        <th>${center.floorMap}</th>
+                                        <th>${center.parkingPlace}</th>
+                                        <th>${center.centerLocation}</th>
+
                                     </tr>
                                 </c:forEach>
 
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <th>userId</th>
-                                    <th> account</th>
-                                    <th>userName</th>
-                                    <th>userIcon</th>
-                                    <th>userPwd</th>
-                                    <th>userPwdsalt</th>
-                                    <th>userEmail</th>
-                                    <th>userTele</th>
-                                    <th>userBirthday</th>
-                                    <th>userIdnum</th>
-                                    <th>userGander</th>
-                                    <th>role</th>
-                                    <th>registerTime</th>
+                                    <th>广场ID</th>
+                                    <th>所在城市</th>
+                                    <th>地址</th>
+                                    <th>总楼层数</th>
+                                    <th>总商铺数</th>
+                                    <th>状态</th>
+                                    <th>简介</th>
+                                    <th>广场图片</th>
+                                    <th>地图图片</th>
+                                    <th>停车位</th>
+                                    <th>坐标</th>
                                 </tr>
                                 </tfoot>
                             </table>

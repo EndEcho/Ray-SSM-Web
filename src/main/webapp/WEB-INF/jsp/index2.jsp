@@ -165,7 +165,7 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i>万达广场</a>
+                        <li><a href="/showAllCenter"><i class="fa fa-circle-o"></i>万达广场</a>
                         </li>
                         <li><a href="#"><i class="fa fa-circle-o"></i>广场商铺</a></li>
                     </ul>
