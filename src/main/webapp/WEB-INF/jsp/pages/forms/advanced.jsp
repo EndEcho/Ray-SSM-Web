@@ -7,30 +7,23 @@
     <script src="../../../../plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script type="text/javascript">
         // 创建地址解析器实例
-
         $(document).ready(function () {
             $("#getLoc").click(function () {
-
                 var myGeo = new BMap.Geocoder();
                 var address = $("#centerAddress").val();
-                // 将地址解析结果显示在地图上,并调整地图视野
+                var city = $("#centerCity").val();
                 myGeo.getPoint(address, function (point) {
                     if (point) {
 //                        alert(point.lng + "    " + point.lat);
                         $("#centerX").val(point.lng);
                         $("#centerY").val(point.lat);
-
                     } else {
                         alert("您选择地址没有解析到结果!地址可能有误！！");
                     }
-                }, "上海市");
-
+                }, city);
             })
         })
-
-
     </script>
-
     <script type="text/javascript"
             src="http://api.map.baidu.com/api?v=2.0&ak=TL4HwHPFRLmD7rmMYQowPKCeOp2wdck4"></script>
 
@@ -589,32 +582,32 @@
                                     <label>城市</label>
                                     <select class="form-control select2" style="width: 100%;" name="centerCity"
                                             id="centerCity">
-                                        <option selected="selected">上海</option>
-                                        <option>北京</option>
-                                        <option>广州</option>
-                                        <option>深圳</option>
+                                        <option selected="selected">上海市</option>
+                                        <option>北京市</option>
+                                        <option>广州市</option>
+                                        <option>深圳市</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="centerIntroduction">新广场描述</label>
-                                    <input type="email" class="form-control" id="centerIntroduction"
+                                    <input type="text" class="form-control" id="centerIntroduction"
                                            placeholder="请输入新广场描述" name="centerIntroduction">
                                 </div>
                                 <div class="form-group">
                                     <label for="centerAddress">新广场地址</label>
                                     <a id="getLoc">&nbsp;&nbsp;&nbsp;&nbsp;解析地址</a>
-                                    <input type="email" class="form-control" id="centerAddress"
-                                           placeholder="请输入新广场地址" name="centerAddress">
+                                    <input type="text" class="form-control" id="centerAddress"
+                                           placeholder="请输入新广场地址...|确认正确后点击解析地址，获取实际经纬度坐标|..." name="centerAddress">
                                 </div>
                                 <div class="form-group">
                                     <label for="centerAddress">坐标地址</label>
 
                                     <div class="cal-xs-6">
-                                        <input type="email" class="form-control" id="centerX"
+                                        <input type="text" class="form-control" id="centerX"
                                                placeholder="X:" name="centerAddress">
                                     </div>
                                     <div class="cal-xs-6">
-                                        <input type="email" class="form-control" id="centerY"
+                                        <input type="text" class="form-control" id="centerY"
                                                placeholder="Y:"
                                                name="centerAddress">
                                     </div>
@@ -645,12 +638,12 @@
 
                                 <div class="form-group">
                                     <label for="storeAmount">总商铺数量</label>
-                                    <input type="email" class="form-control" id="storeAmount"
+                                    <input type="text" class="form-control" id="storeAmount"
                                            placeholder="请输入商铺数量" name="storeAmount">
                                 </div>
                                 <div class="form-group">
                                     <label for="parkingPlace">总停车位数量</label>
-                                    <input type="email" class="form-control" id="parkingPlace"
+                                    <input type="text" class="form-control" id="parkingPlace"
                                            placeholder="请输入停车位数量" name="parkingPlace">
                                 </div>
                                 <%--<div class="form-group">--%>
@@ -673,9 +666,7 @@
                 </div>
 
             </div>
-
             <!-- /.row -->
-
         </section>
         <!-- /.content -->
     </div>
