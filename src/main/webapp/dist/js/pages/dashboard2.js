@@ -94,55 +94,58 @@ $(function () {
     //-------------
     // Get context with jQuery - using jQuery's .get() method.
 
-    var userList = new Array;
+    var List = new Array;
     $.ajax({
-        type: "POST",
+        type: "GET",
         async: false,
-        url: "/getUserData",
+        url: "/getStoreCountByType",
         success: function (data) {
-            userList = data;
+            List = data;
+            console.log(data);
         }
     });
-    console.log(userList[0]);
+    console.log(List[0].SC);
+    console.log(List[0].storeType);
+    console.log(List.length);
     //ajax取controller中的数据
     var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
     var pieChart = new Chart(pieChartCanvas);
     var PieData = [
         {
-            value: userList[0].userId,
+            value: List[5].SC,
             color: "#f56954",
             highlight: "#f56954",
-            label: userList[0].userName
+            label: List[5].storeType
         },
         {
-            value: 500,
+            value: List[2].SC,
             color: "#00a65a",
             highlight: "#00a65a",
-            label: "IE"
+            label: List[2].storeType
         },
         {
-            value: 400,
+            value: List[4].SC,
             color: "#f39c12",
             highlight: "#f39c12",
-            label: "FireFox"
+            label: List[4].storeType
         },
         {
-            value: 600,
+            value: List[1].SC,
             color: "#00c0ef",
             highlight: "#00c0ef",
-            label: "Safari"
+            label: List[1].storeType
         },
         {
-            value: 300,
+            value: List[3].SC,
             color: "#3c8dbc",
             highlight: "#3c8dbc",
-            label: "Opera"
+            label: List[3].storeType
         },
         {
-            value: 100,
+            value: List[0].SC,
             color: "#d2d6de",
             highlight: "#d2d6de",
-            label: "Navigator"
+            label: List[0].storeType
         }
     ];
     var pieOptions = {

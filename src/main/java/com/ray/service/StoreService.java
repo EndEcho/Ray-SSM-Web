@@ -42,4 +42,13 @@ public class StoreService {
         return storeCount;
 
     }
+
+    public List getStoreCountByType() {
+        List list = storeDao.getStoreCountByType();
+        return list;
+    }
+
+    public int addNewStore(Store store) {
+        return storeDao.addNewStore(store);
+    }
 }

@@ -9,22 +9,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
 <body>
-
 <%--<r:showData stable="User"/>--%>
-
 <a href="/adminLogin">index2.jsp</a><br>
-<a href="/showAllUser">tables/data.jsp</a><br>
-<a href="/testTag">GO</a>
-
-<a href="/centerStateData">centerStateData</a><br>
-<a href="/BMap">BMap</a>
-<span>总中心数：${centerCount}</span>
-<span>在建中心数：${emptyCenterCount}</span>
-
 <%--<%--%>
 <%--response.sendRedirect("/showAllMember");--%>
 <%--%>--%>
-
 <br>
 <br>
 <form action="/upload" enctype="multipart/form-data" method="post">

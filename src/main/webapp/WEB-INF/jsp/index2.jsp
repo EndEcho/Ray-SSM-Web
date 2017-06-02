@@ -31,8 +31,6 @@
     <%--<![endif]-->--%>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-
-
 <div class="wrapper">
     <header class="main-header">
         <!-- Logo -->
@@ -45,75 +43,27 @@
 
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
-            <!-- Sidebar toggle button-->
-            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                <span class="sr-only">Toggle navigation</span>
-            </a>
             <!-- Navbar Right Menu -->
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
-                    <li class="dropdown notifications-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-bell-o"></i>
-                            <span class="label label-warning">2</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="header">You have 2 notifications</li>
-                            <li>
-                                <!-- inner menu: contains the actual data -->
-                                <ul class="menu">
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-users text-aqua"></i> 5 个新用户
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-users text-red"></i> 5 个新订单
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <%--<li class="footer"><a href="#">View all</a></li>--%>
-                        </ul>
-                    </li>
-
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="${path}" class="user-image" alt="User Image">
-                            <span class="hidden-xs">${path}</span>
+                            <img src="${userList.get(1).userIcon}" class="user-image" alt="User Image">
+                            <span class="hidden-xs">${userList.get(1).userName}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="${path}" class="img-circle" alt="User Image">
+                                <img src="${userList.get(1).userIcon}" class="img-circle" alt="User Image">
 
                                 <p>
-                                    ${path} - Web Developer
+                                    ${userList.get(1).userIcon} - Web Developer
                                     <small>Member since Nov. 2012</small>
                                 </p>
                             </li>
                             <!-- Menu Body -->
-                            <li class="user-body">
-                                <div class="row">
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Followers</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Sales</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Friends</a>
-                                    </div>
-                                </div>
-                                <!-- /.row -->
-                            </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
-                                <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                </div>
                                 <div class="pull-right">
                                     <a href="#" class="btn btn-default btn-flat">Sign out</a>
                                 </div>
@@ -121,9 +71,6 @@
                         </ul>
                     </li>
                     <!-- Control Sidebar Toggle Button -->
-                    <li>
-                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                    </li>
                 </ul>
             </div>
 
@@ -139,8 +86,8 @@
                     <img src="${userList.get(1).userIcon}" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>${userName}</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
+                    <h4><strong>${userList.get(1).userName}</strong></h4>
+
                 </div>
             </div>
             <ul class="sidebar-menu">
@@ -153,9 +100,21 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="active"><a href="#"><i class="fa fa-circle-o"></i>管理员主页</a></li>
+                        <li class="active"><a href=""><i class="fa fa-circle-o"></i>管理员主页</a></li>
                     </ul>
                 </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-user-circle-o"></i> <span>用户管理</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                       </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/showAllUser"><i class="fa fa-circle-o"></i>所有用户</a></li>
+                    </ul>
+                </li>
+
 
                 <li class="treeview">
                     <a href="#">
@@ -165,9 +124,7 @@
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="/showAllCenter"><i class="fa fa-circle-o"></i>万达广场</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i>广场商铺</a></li>
+                        <li><a href="/showAllCenter"><i class="fa fa-circle-o"></i>万达广场</a></li>
                     </ul>
                 </li>
 
@@ -179,10 +136,9 @@
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="/showAllUser"><i class="fa fa-circle-o"></i>全部</a></li>
+                        <li><a href="/showAllStore"><i class="fa fa-circle-o"></i>全部</a></li>
                         <li><a href="#"><i class="fa fa-circle-o"></i>按广场</a></li>
                         <li><a href="#"><i class="fa fa-circle-o"></i>未出租</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i>待确认</a></li>
                         <li><a href="#"><i class="fa fa-circle-o"></i>已出租</a></li>
                     </ul>
                 </li>
@@ -200,16 +156,17 @@
                     </ul>
                 </li>
 
-                <li><a href="/showAllUser"><i class="fa fa-book"></i> <span>管理员手册</span></a></li>
+                <li><a href="#"><i class="fa fa-book"></i> <span>管理员手册</span></a></li>
 
 
                 <li class="header">快捷方式</li>
                 <li><a href="/addNewCenterPage"><i class="fa fa-circle-o text-red"></i> <span>添加广场</span></a></li>
-                <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>添加商铺</span></a></li>
+                <li><a href="/addNewStoreView"><i class="fa fa-circle-o text-yellow"></i> <span>添加商铺</span></a></li>
                 <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>添加用户</span></a></li>
 
                 <li class="header">其他</li>
                 <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>文件上传</span></a></li>
+                <li><a href="#"><i class="fa fa-circle text-olive"></i> <span>假装下达一个订单</span></a></li>
             </ul>
         </section>
         <!-- /.sidebar -->
@@ -505,12 +462,12 @@
                                 <!-- /.col -->
                                 <div class="col-md-4">
                                     <ul class="chart-legend clearfix">
-                                        <li><i class="fa fa-circle-o text-red"></i> ${typeList.get(0)}</li>
-                                        <li><i class="fa fa-circle-o text-green"></i> ${typeList.get(1)}</li>
-                                        <li><i class="fa fa-circle-o text-yellow"></i> FireFox</li>
-                                        <li><i class="fa fa-circle-o text-aqua"></i> Safari</li>
-                                        <li><i class="fa fa-circle-o text-light-blue"></i> Opera</li>
-                                        <li><i class="fa fa-circle-o text-gray"></i> Navigator</li>
+                                        <li><i class="fa fa-circle-o text-red"></i>食品</li>
+                                        <li><i class="fa fa-circle-o text-green"></i>娱乐</li>
+                                        <li><i class="fa fa-circle-o text-yellow"></i>服饰</li>
+                                        <li><i class="fa fa-circle-o text-aqua"></i>医药</li>
+                                        <li><i class="fa fa-circle-o text-light-blue"></i>家电</li>
+                                        <li><i class="fa fa-circle-o text-gray"></i>其他</li>
                                     </ul>
                                 </div>
                                 <!-- /.col -->
@@ -555,197 +512,9 @@
     </footer>
 
     <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Create the tabs -->
-        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-            <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-        </ul>
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <!-- Home tab content -->
-            <div class="tab-pane" id="control-sidebar-home-tab">
-                <h3 class="control-sidebar-heading">Recent Activity</h3>
-                <ul class="control-sidebar-menu">
-                    <li>
-                        <a href="javascript:void(0)">
-                            <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-                            <div class="menu-info">
-                                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-                                <p>Will be 23 on April 24th</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <i class="menu-icon fa fa-user bg-yellow"></i>
-
-                            <div class="menu-info">
-                                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
-
-                                <p>New phone +1(800)555-1234</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
-
-                            <div class="menu-info">
-                                <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
-
-                                <p>nora@example.com</p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <i class="menu-icon fa fa-file-code-o bg-green"></i>
-
-                            <div class="menu-info">
-                                <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
-
-                                <p>Execution time 5 seconds</p>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-                <!-- /.control-sidebar-menu -->
-
-                <h3 class="control-sidebar-heading">Tasks Progress</h3>
-                <ul class="control-sidebar-menu">
-                    <li>
-                        <a href="javascript:void(0)">
-                            <h4 class="control-sidebar-subheading">
-                                Custom Template Design
-                                <span class="label label-danger pull-right">70%</span>
-                            </h4>
-
-                            <div class="progress progress-xxs">
-                                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <h4 class="control-sidebar-subheading">
-                                Update Resume
-                                <span class="label label-success pull-right">95%</span>
-                            </h4>
-
-                            <div class="progress progress-xxs">
-                                <div class="progress-bar progress-bar-success" style="width: 95%"></div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <h4 class="control-sidebar-subheading">
-                                Laravel Integration
-                                <span class="label label-warning pull-right">50%</span>
-                            </h4>
-
-                            <div class="progress progress-xxs">
-                                <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <h4 class="control-sidebar-subheading">
-                                Back End Framework
-                                <span class="label label-primary pull-right">68%</span>
-                            </h4>
-
-                            <div class="progress progress-xxs">
-                                <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-                <!-- /.control-sidebar-menu -->
-
-            </div>
-            <!-- /.tab-pane -->
-
-            <!-- Settings tab content -->
-            <div class="tab-pane" id="control-sidebar-settings-tab">
-                <form method="post">
-                    <h3 class="control-sidebar-heading">General Settings</h3>
-
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Report panel usage
-                            <input type="checkbox" class="pull-right" checked>
-                        </label>
-
-                        <p>
-                            Some information about this general settings option
-                        </p>
-                    </div>
-                    <!-- /.form-group -->
-
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Allow mail redirect
-                            <input type="checkbox" class="pull-right" checked>
-                        </label>
-
-                        <p>
-                            Other sets of options are available
-                        </p>
-                    </div>
-                    <!-- /.form-group -->
-
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Expose author name in posts
-                            <input type="checkbox" class="pull-right" checked>
-                        </label>
-
-                        <p>
-                            Allow the user to show his name in blog posts
-                        </p>
-                    </div>
-                    <!-- /.form-group -->
-
-                    <h3 class="control-sidebar-heading">Chat Settings</h3>
-
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Show me as online
-                            <input type="checkbox" class="pull-right" checked>
-                        </label>
-                    </div>
-                    <!-- /.form-group -->
-
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Turn off notifications
-                            <input type="checkbox" class="pull-right">
-                        </label>
-                    </div>
-                    <!-- /.form-group -->
-
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Delete chat history
-                            <a href="javascript:void(0)" class="text-red pull-right"><i
-                                    class="fa fa-trash-o"></i></a>
-                        </label>
-                    </div>
-                    <!-- /.form-group -->
-                </form>
-            </div>
-            <!-- /.tab-pane -->
-        </div>
-    </aside>
     <!-- /.control-sidebar -->
     <!-- Add the sidebar's background. This div must be placed
     immediately after the control sidebar -->
-    <div class="control-sidebar-bg"></div>
 
 </div>
 <!-- ./wrapper -->

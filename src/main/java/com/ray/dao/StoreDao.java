@@ -18,4 +18,8 @@ public interface StoreDao {
     public int getEmptyStoreCount();
 
     public int getStoreCount();
+
+    public List getStoreCountByType();
+
+    public int addNewStore(Store store);
 }

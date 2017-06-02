@@ -25,11 +25,15 @@
     </select>
 
     <select id="getCenterCount" resultType="int">
-    SELECT Count(centerId) FROM center
+        SELECT Count(centerId) FROM center
     </select>
 
     <select id="getEmptyCenterCount" resultType="int">
         SELECT COUNT(centerId) FROM center WHERE isFinished = 0
+    </select>
+
+    <select id="getCenterById" resultMap="defuaresultMap" parameterType="java.lang.Integer">
+        SELECT * FROM center WHERE centerId=#{centerId}
     </select>
 
     <insert id="addNewCenter" parameterType="com.ray.model.Center" useGeneratedKeys="true">
@@ -64,5 +68,20 @@
         </selectKey>
     </insert>
 
-
+    <update id="updateCenterById" parameterType="com.ray.model.Center">
+        UPDATE center
+        <set>
+            <if test="centerCity != null">centerCity=#{centerCity},</if>
+            <if test="centerAddress != null">centerAddress=#{centerAddress},</if>
+            <if test="floorAmount != null">floorAmount=#{floorAmount},</if>
+            <if test="storesAmount != null">storesAmount=#{storesAmount},</if>
+            <if test="centerIntroduction != null">centerIntroduction=#{centerIntroduction},</if>
+            <if test="isFinished != null">isFinished=#{isFinished},</if>
+            <if test="centerImage != null">centerImage=#{centerImage},</if>
+            <if test="floorMap != null">floorMap=#{floorMap},</if>
+            <if test="parkingPlace != null">parkingPlace=#{parkingPlace},</if>
+            <if test="centerLocation != null">centerLocation=#{centerLocation}</if>
+        </set>
+        WHERE centerId=#{centerId}
+    </update>
 </mapper>

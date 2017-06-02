@@ -42,4 +42,14 @@ public class CenterService {
         int i = centerDao.getEmptyCenterCount();
         return i;
     }
+
+    public Center getCenterById(Integer centerId) {
+        Center center = centerDao.getCenterById(centerId);
+        return center;
+    }
+
+    public int updateCenterById(Center center) {
+        return centerDao.updateCenterById(center);
+    }
+
 }

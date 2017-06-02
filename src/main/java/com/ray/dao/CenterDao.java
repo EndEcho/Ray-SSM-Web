@@ -13,9 +13,13 @@ import java.util.List;
 public interface CenterDao {
     public List<Center> getAllCenter();
 
+    public Center getCenterById(Integer centerId);
+
     public int addNewCenter(Center center);
 
     public int getCenterCount();
 
     public int getEmptyCenterCount();
+
+    public int updateCenterById(Center center);
 }

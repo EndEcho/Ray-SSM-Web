@@ -29,36 +29,45 @@ public class CenterController {
         return "WEB-INF/jsp/pages/tables/dataCenter.jsp";
     }
 
+    @RequestMapping(value = "/updateCenterView", method = RequestMethod.GET)
+    public String updateCenterView(@RequestParam("centerId") Integer centerId, Model model) {
+        Center center = centerService.getCenterById(centerId);
+        model.addAttribute("center", center);
+        String[] lo = center.getCenterLocation().split(",");
+        String loX = lo[0];
+        String loY = lo[1];
+        model.addAttribute("loX", loX);
+        model.addAttribute("loY", loY);
+        return "WEB-INF/jsp/pages/forms/updateCenter.jsp";
+    }
+
+    @RequestMapping(value = "/updateCenter", method = RequestMethod.POST)
+    public String updateCenter(@RequestParam("centerX") double centerX,
+                               @RequestParam("centerY") double centerY,
+                               Model model, Center center) {
+        if (centerX != 0 && centerY != 0) {
+            center.setCenterLocation(centerX + "," + centerY);
+        } else {
+            center.setCenterLocation("0.00,0.00");
+        }
+
+        centerService.updateCenterById(center);
+        return showAllCenter(model);
+    }
+
+
     @RequestMapping(value = "/addNewCenter", method = RequestMethod.POST)
     public String addNewCenter(@RequestParam("centerX") double centerX,
                                @RequestParam("centerY") double centerY,
                                Center center, Model model) {
-        System.out.println("**********************");
-        System.out.println("**********************");
-        System.out.println("**********************");
-        System.out.println("**********************");
-        System.out.println("**********************");
-        System.out.println("**********************");
-        System.out.println("**********************");
-        System.out.println("**********************");
         center.setCenterLocation(centerX + "," + centerY);
         center.setIsFinished(0);
         center.setFloorMap("image/user.jpeg");
         center.setCenterImage("image/user.jpeg");
-        System.out.println(centerX);
-        System.out.println(centerY);
-        System.out.println(center.toString());
         centerService.addNewCenter(center);
 //        return "WEB-INF/jsp/pages/tables/dataCenter.jsp";
         return showAllCenter(model);
     }
 
-    @RequestMapping(value = "/centerStateData", method = RequestMethod.GET)
-    public String centerStateData(Model model) {
-        int centerCount = centerService.getCenterCount();
-        int emptyCenterCount = centerService.getEmptyCenterCount();
-        model.addAttribute("centerCount", centerCount);
-        model.addAttribute("emptyCenterCount", emptyCenterCount);
-        return "index.jsp";
-    }
+
 }

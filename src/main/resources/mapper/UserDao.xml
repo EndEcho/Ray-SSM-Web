@@ -7,9 +7,7 @@
         <id column="userId" property="userId"></id>
         <result column="account" property="account"></result>
         <result column="userName" property="userName"></result>
-
         <result column="userIcon" property="userIcon"></result>
-
         <result column="userPwd" property="userPwd"></result>
         <result column="userPwdsalt" property="userPwdsalt"></result>
         <result column="userEmail" property="userEmail"></result>

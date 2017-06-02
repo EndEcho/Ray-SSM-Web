@@ -1,11 +1,51 @@
-<!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <!-- jQuery 2.2.3 -->
+    <script src="../../../../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <%--<script type="text/javascript">--%>
+    <%--// 百度地图解析地址--%>
+    <%--$(document).ready(function () {--%>
+    <%--$("#getLoc").click(function () {--%>
+    <%--var myGeo = new BMap.Geocoder();--%>
+    <%--var address = $("#centerAddress").val();--%>
+    <%--var city = $("#centerCity").val();--%>
+    <%--myGeo.getPoint(address, function (point) {--%>
+    <%--if (point) {--%>
+    <%--//                        alert(point.lng + "    " + point.lat);--%>
+    <%--$("#centerX").val(point.lng);//经度--%>
+    <%--$("#centerY").val(point.lat);//纬度--%>
+    <%--} else {--%>
+    <%--alert("您选择地址没有解析到结果!地址可能有误！！");--%>
+    <%--}--%>
+    <%--}, city);--%>
+    <%--})--%>
+    <%--})--%>
+    <%--</script>--%>
+    <script>
+        $(document).ready(function () {
+            $("#center").change(function () {
+                    $("#floor").empty();
+                    var a = $("#center").val();
+                    var pArr = a.split(",");
+                    var ctr = parseInt(pArr[0]);
+                    for (var i = 1; i < ctr + 1; i++) {
+                        $("#floor").append(" <option value=" + i + ">" + i + "</option>");
+                    }
+                }
+            )
+        });
+    </script>
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=TL4HwHPFRLmD7rmMYQowPKCeOp2wdck4"></script>
+
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Data Tables</title>
+    <title>AdminLTE 2 | Advanced form elements</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -14,20 +54,30 @@
     <link rel="stylesheet" href="../../../../dist/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="../../../../dist/css/ionicons.min.css">
-    <!-- DataTables -->
-    <link rel="stylesheet" href="../../../../plugins/datatables/dataTables.bootstrap.css">
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="../../../../plugins/daterangepicker/daterangepicker.css">
+    <!-- bootstrap datepicker -->
+    <link rel="stylesheet" href="../../../../plugins/datepicker/datepicker3.css">
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="../../../../plugins/iCheck/all.css">
+    <!-- Bootstrap Color Picker -->
+    <link rel="stylesheet" href="../../../../plugins/colorpicker/bootstrap-colorpicker.min.css">
+    <!-- Bootstrap time Picker -->
+    <link rel="stylesheet" href="../../../../plugins/timepicker/bootstrap-timepicker.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="../../../../plugins/select2/select2.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../../../dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="../../../../dist/css/skins/_all-skins.min.css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <%--<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->--%>
+    <%--<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->--%>
+    <%--<!--[if lt IE 9]>--%>
+    <%--<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>--%>
+    <%--<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>--%>
+    <%--<![endif]-->--%>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -218,131 +268,194 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Data Tables
-                <small>advanced tables</small>
+                Advanced Form Elements
+                <small>Preview</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Tables</a></li>
-                <li class="active">Data tables</li>
+                <li><a href="#">Forms</a></li>
+                <li class="active">Advanced Elements</li>
             </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">Data Table With Full Features</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                    <th>广场ID</th>
-                                    <th>所在城市</th>
-                                    <th>地址</th>
-                                    <th>总楼层数</th>
-                                    <th>总商铺数</th>
-                                    <th>状态</th>
-                                    <th>简介</th>
-                                    <th>广场图片</th>
-                                    <th>地图图片</th>
-                                    <th>停车位</th>
-                                    <th>坐标</th>
-
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <c:forEach var="store" items="${centerList}">
-                                    <tr>
-                                        <th><a href="/updateCenterView?centerId=${store.centerId}"
-                                               class="fa fa-edit">&nbsp;&nbsp;${store.centerId}</a>
-                                        </th>
-                                        <th>${store.centerCity}</th>
-                                        <th>${store.centerAddress}</th>
-                                        <th>${store.floorAmount}</th>
-                                        <th>${store.storesAmount}</th>
-                                        <th>${store.isFinished}</th>
-                                        <th>${store.centerIntroduction}</th>
-                                        <th>${store.centerImage}</th>
-                                        <th>${store.floorMap}</th>
-                                        <th>${store.parkingPlace}</th>
-                                        <th>${store.centerLocation}</th>
-
-                                    </tr>
-                                </c:forEach>
-
-                                </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>广场ID</th>
-                                    <th>所在城市</th>
-                                    <th>地址</th>
-                                    <th>总楼层数</th>
-                                    <th>总商铺数</th>
-                                    <th>状态</th>
-                                    <th>简介</th>
-                                    <th>广场图片</th>
-                                    <th>地图图片</th>
-                                    <th>停车位</th>
-                                    <th>坐标</th>
-                                </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
-
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">添加新商铺</h3>
                 </div>
-                <!-- /.col -->
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="box box-primary">
+
+                        <!-- form start -->
+
+                        <form role="form" action="/addNewStore" method="post">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label>所在广场</label>
+                                    <select class="form-control select2" style="width: 100%;" name="centerSelect"
+                                            id="center">
+                                        <c:forEach var="center" items="${centerList}">
+                                            <option value="${center.floorAmount},${center.centerId}">${center.centerIntroduction}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="storeArea">商铺面积</label>
+                                    <input type="text" class="form-control" id="storeArea"
+                                           placeholder="请输入商品面积......平方米" name="storeArea">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="storeNum">商铺门牌号</label>
+                                    <input type="text" class="form-control" id="storeNum"
+                                           placeholder="请输入商铺门牌号" name="storeNum">
+                                </div>
+                                <div class="form-group">
+                                    <label for="storePrice">商品租金</label>
+                                    <input type="text" class="form-control" id="storePrice"
+                                           placeholder="请输入店铺租金......RMB/月" name="storePrice">
+                                </div>
+                                <div class="form-group">
+                                    <label>所在楼层数</label>
+                                    <select class="form-control" name="storeFloor" id="floor">
+                                        <option>请先选择所在广场</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>指定商铺类型</label>
+                                    <select class="form-control" name="storeType" id="storeType">
+                                        <option>食品</option>
+                                        <option>娱乐</option>
+                                        <option>服饰</option>
+                                        <option>医药</option>
+                                        <option>家电</option>
+                                        <option>其他</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="storeIntroduction">商铺简介</label>
+                                    <input type="text" class="form-control" id="storeIntroduction"
+                                           placeholder="请输入商铺简介" name="storeIntroduction">
+                                </div>
+                                <%--<div class="form-group">--%>
+                                <%--<label for="exampleInputPassword1">Password</label>--%>
+                                <%--<input type="password" class="form-control" id="exampleInputPassword1"--%>
+                                <%--placeholder="Password">--%>
+                                <%--</div>--%>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
             <!-- /.row -->
         </section>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-            <b>Version</b> 2.3.12
-        </div>
-        <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
-        reserved.
-    </footer>
     <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
-
-<!-- jQuery 2.2.3 -->
-<script src="../../../../plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../../../../bootstrap/js/bootstrap.min.js"></script>
-<!-- DataTables -->
-<script src="../../../../plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../../../../plugins/datatables/dataTables.bootstrap.min.js"></script>
-<!-- SlimScroll -->
+<!-- Select2 -->
+<script src="../../../../plugins/select2/select2.full.min.js"></script>
+<!-- InputMask -->
+<script src="../../../../plugins/input-mask/jquery.inputmask.js"></script>
+<script src="../../../../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="../../../../plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<!-- date-range-picker -->
+<%--<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>--%>
+<script src="../../../../plugins/daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap datepicker -->
+<script src="../../../../plugins/datepicker/bootstrap-datepicker.js"></script>
+<!-- bootstrap color picker -->
+<script src="../../../../plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+<!-- bootstrap time picker -->
+<script src="../../../../plugins/timepicker/bootstrap-timepicker.min.js"></script>
+<!-- SlimScroll 1.3.0 -->
 <script src="../../../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- iCheck 1.0.1 -->
+<script src="../../../../plugins/iCheck/icheck.min.js"></script>
 <!-- FastClick -->
 <script src="../../../../plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="../../../../dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../../../dist/js/demo.js"></script>
-<!-- page script -->
+<!-- Page script -->
 <script>
     $(function () {
-        $("#example1").DataTable();
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false
+        //Initialize Select2 Elements
+        $(".select2").select2();
+
+        //Datemask dd/mm/yyyy
+        $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+        //Datemask2 mm/dd/yyyy
+        $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
+        //Money Euro
+        $("[data-mask]").inputmask();
+
+        //Date range picker
+        $('#reservation').daterangepicker();
+        //Date range picker with time picker
+        $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
+        //Date range as a button
+        $('#daterange-btn').daterangepicker(
+            {
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                },
+                startDate: moment().subtract(29, 'days'),
+                endDate: moment()
+            },
+            function (start, end) {
+                $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+            }
+        );
+
+        //Date picker
+        $('#datepicker').datepicker({
+            autoclose: true
+        });
+
+        //iCheck for checkbox and radio inputs
+        $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue',
+            radioClass: 'iradio_minimal-blue'
+        });
+        //Red color scheme for iCheck
+        $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+            checkboxClass: 'icheckbox_minimal-red',
+            radioClass: 'iradio_minimal-red'
+        });
+        //Flat red color scheme for iCheck
+        $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+            checkboxClass: 'icheckbox_flat-green',
+            radioClass: 'iradio_flat-green'
+        });
+
+        //Colorpicker
+        $(".my-colorpicker1").colorpicker();
+        //color picker with addon
+        $(".my-colorpicker2").colorpicker();
+
+        //Timepicker
+        $(".timepicker").timepicker({
+            showInputs: false
         });
     });
 </script>
 </body>
 </html>
+

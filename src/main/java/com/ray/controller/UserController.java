@@ -50,7 +50,6 @@ public class UserController {
     }
 
     @RequestMapping(value = "/adminLogin", method = RequestMethod.POST)
-
     public String adminLogin(Model model) {
         List<User> userList = userService.getAllUser();
         model.addAttribute("userList", userList);
@@ -61,7 +60,6 @@ public class UserController {
     @ResponseBody
     public List<User> getUserData() {
         List<User> userList = userService.getAllUser();
-        System.out.println(userList.get(1).toString());
         return userList;
     }
 

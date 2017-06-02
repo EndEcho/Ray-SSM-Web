@@ -267,7 +267,7 @@
         <section class="content">
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <h3 class="box-title">添加新中心</h3>
+                    <h3 class="box-title">编辑中心</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -275,40 +275,44 @@
 
                         <!-- form start -->
 
-                        <form role="form" action="/addNewCenter" method="post">
+                        <form role="form" action="/updateCenter" method="post">
                             <div class="box-body">
+                                <input type="hidden" value="${center.centerId}" name="centerId">
                                 <div class="form-group">
                                     <label>城市</label>
                                     <select class="form-control select2" style="width: 100%;" name="centerCity"
                                             id="centerCity">
-                                        <option selected="selected">上海市</option>
+                                        <option SELECTED="selected">${center.centerCity}</option>
+                                        <option>上海市</option>
                                         <option>北京市</option>
                                         <option>广州市</option>
                                         <option>深圳市</option>
+
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="centerIntroduction">新广场名</label>
+                                    <label for="centerIntroduction">广场名称</label>
                                     <input type="text" class="form-control" id="centerIntroduction"
-                                           placeholder="请输入新广场描述" name="centerIntroduction">
+                                           placeholder="请输入新广场描述" name="centerIntroduction"
+                                           value="${center.centerIntroduction}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="centerAddress">新广场地址</label>
+                                    <label for="centerAddress">广场地址</label>
                                     <a id="getLoc">&nbsp;&nbsp;&nbsp;&nbsp;解析地址</a>
                                     <input type="text" class="form-control" id="centerAddress"
-                                           placeholder="请输入新广场地址...|确认正确后点击解析地址，获取实际经纬度坐标|..." name="centerAddress">
+                                           placeholder="请输入新广场地址...|确认正确后点击解析地址，获取实际经纬度坐标|..."
+                                           name="centerAddress" value="${center.centerAddress}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="centerAddress">坐标地址</label>
+                                    <label for="centerX">坐标地址</label>
 
                                     <div class="cal-xs-6">
                                         <input type="text" class="form-control" id="centerX"
-                                               placeholder="X:" name="centerX">
+                                               placeholder="X:" name="centerX" value="${loX}">
                                     </div>
                                     <div class="cal-xs-6">
                                         <input type="text" class="form-control" id="centerY"
-                                               placeholder="Y:"
-                                               name="centerY">
+                                               placeholder="Y:" name="centerY" value="${loY}">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -331,17 +335,26 @@
                                         <option>15</option>
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label>广场状态 ( 完成1 / 在建0 )</label>
+                                    <select class="form-control" name="isFinished">
+                                        <option>0</option>
+                                        <option>1</option>
+                                    </select>
+                                </div>
+
 
                                 <div class="form-group">
                                     <label for="storesAmount">总商铺数量</label>
                                     <input type="text" class="form-control" id="storesAmount"
-                                           placeholder="请输入商铺数量" name="storesAmount">
+                                           placeholder="请输入商铺数量" name="storesAmount" value="${center.storesAmount}">
                                 </div>
                                 <div class="form-group">
                                     <label for="parkingPlace">总停车位数量</label>
                                     <input type="text" class="form-control" id="parkingPlace"
-                                           placeholder="请输入停车位数量" name="parkingPlace">
+                                           placeholder="请输入停车位数量" name="parkingPlace" value="${center.parkingPlace}">
                                 </div>
+
                                 <%--<div class="form-group">--%>
                                 <%--<label for="exampleInputPassword1">Password</label>--%>
                                 <%--<input type="password" class="form-control" id="exampleInputPassword1"--%>
@@ -350,8 +363,6 @@
                                 <%--</div>--%>
                             </div>
                             <!-- /.box-body -->
-                            <div id="l-map"><span id="locationXY"></span></div>
-
                             <div class="box-footer">
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>

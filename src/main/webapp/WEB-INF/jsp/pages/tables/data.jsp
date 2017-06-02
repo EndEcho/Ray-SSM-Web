@@ -257,21 +257,21 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="center" items="${userList}">
+                                <c:forEach var="store" items="${userList}">
                                     <tr>
-                                        <th>${center.userId}</th>
-                                        <th>${center.account}</th>
-                                        <th>${center.userName}</th>
-                                        <th>${center.userIcon}</th>
-                                        <th>${center.userPwd}</th>
-                                        <th>${center.userPwdsalt}</th>
-                                        <th>${center.userEmail}</th>
-                                        <th>${center.userTele}</th>
-                                        <th>${center.userBirthday}</th>
-                                        <th>${center.userIdnum}</th>
-                                        <th>${center.userGander}</th>
-                                        <th>${center.role}</th>
-                                        <th>${center.registerTime}</th>
+                                        <th>${store.userId}</th>
+                                        <th>${store.account}</th>
+                                        <th>${store.userName}</th>
+                                        <th>${store.userIcon}</th>
+                                        <th>${store.userPwd}</th>
+                                        <th>${store.userPwdsalt}</th>
+                                        <th>${store.userEmail}</th>
+                                        <th>${store.userTele}</th>
+                                        <th>${store.userBirthday}</th>
+                                        <th>${store.userIdnum}</th>
+                                        <th>${store.userGander}</th>
+                                        <th>${store.role}</th>
+                                        <th>${store.registerTime}</th>
                                     </tr>
                                 </c:forEach>
 

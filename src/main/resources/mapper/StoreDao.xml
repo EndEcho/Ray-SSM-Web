@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ray.dao.StoreDao">
     <resultMap id="defuaresultMap" type="com.ray.model.Store">
-        <id column="storeId" property="storeId"></id>
+        <result column="storeId" property="storeId"></result>
         <result column="centerId" property="centerId"></result>
         <result column="storeArea" property="storeArea"></result>
         <result column="storePrice" property="storePrice"></result>
@@ -30,11 +30,52 @@
     </select>
 
     <select id="getStoreCount" resultType="int">
-    SELECT Count(storeId) FROM store
+        SELECT Count(storeId) FROM store
     </select>
 
     <select id="getEmptyStoreCount" resultType="int">
         SELECT Count(storeId) FROM store WHERE storeState = '0';
     </select>
+
+    <select id="getStoreCountByType" resultType="java.util.Map">
+        SELECT
+        Count(storeId) AS SC,
+        storeType
+        FROM
+        store
+        GROUP BY
+        storeType
+        ORDER BY
+        storeType ASC
+    </select>
+
+    <insert id="addNewStore" parameterType="com.ray.model.Store">
+        insert into store
+        (
+        storeId,
+        centerId,
+        storeArea,
+        storePrice,
+        storeState,
+        storeFloor,
+        storeType,
+        storeIntroduction,
+        storeImage,
+        storeBrand
+        )
+        values
+        (
+        #{storeId},
+        #{centerId},
+        #{storeArea},
+        #{storePrice},
+        #{storeState},
+        #{storeFloor},
+        #{storeType},
+        #{storeIntroduction},
+        #{storeImage},
+        #{storeBrand}
+        )
+    </insert>
 
 </mapper>

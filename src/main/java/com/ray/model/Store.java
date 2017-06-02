@@ -19,6 +19,22 @@ public class Store {
     public Store() {
     }
 
+    @Override
+    public String toString() {
+        return "Store{" +
+                "storeId=" + storeId +
+                ", centerId=" + centerId +
+                ", storeArea=" + storeArea +
+                ", storePrice=" + storePrice +
+                ", storeState='" + storeState + '\'' +
+                ", storeFloor=" + storeFloor +
+                ", storeType='" + storeType + '\'' +
+                ", storeIntroduction='" + storeIntroduction + '\'' +
+                ", storeImage='" + storeImage + '\'' +
+                ", storeBrand='" + storeBrand + '\'' +
+                '}';
+    }
+
     public Store(Integer storeId, Integer centerId, Integer storeArea, Double storePrice, String storeState, Integer storeFloor, String storeType, String storeIntroduction, String storeImage, String storeBrand) {
         this.storeId = storeId;
         this.centerId = centerId;
@@ -111,6 +127,4 @@ public class Store {
     public void setStoreBrand(String storeBrand) {
         this.storeBrand = storeBrand;
     }
-
-
 }

@@ -241,36 +241,34 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th>广场ID</th>
-                                    <th>所在城市</th>
-                                    <th>地址</th>
-                                    <th>总楼层数</th>
-                                    <th>总商铺数</th>
+                                    <th>商铺ID</th>
+                                    <th>所在广场ID</th>
+                                    <th>面积</th>
+                                    <th>租金</th>
                                     <th>状态</th>
+                                    <th>所在楼层</th>
+                                    <th>类型</th>
                                     <th>简介</th>
-                                    <th>广场图片</th>
-                                    <th>地图图片</th>
-                                    <th>停车位</th>
-                                    <th>坐标</th>
+                                    <th>图片</th>
+                                    <th>品牌</th>
+
 
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="store" items="${centerList}">
+                                <c:forEach var="store" items="${storeList}">
                                     <tr>
-                                        <th><a href="/updateCenterView?centerId=${store.centerId}"
-                                               class="fa fa-edit">&nbsp;&nbsp;${store.centerId}</a>
-                                        </th>
-                                        <th>${store.centerCity}</th>
-                                        <th>${store.centerAddress}</th>
-                                        <th>${store.floorAmount}</th>
-                                        <th>${store.storesAmount}</th>
-                                        <th>${store.isFinished}</th>
-                                        <th>${store.centerIntroduction}</th>
-                                        <th>${store.centerImage}</th>
-                                        <th>${store.floorMap}</th>
-                                        <th>${store.parkingPlace}</th>
-                                        <th>${store.centerLocation}</th>
+                                        <th>${store.storeId}</th>
+                                        <th>${store.centerId}</th>
+                                        <th>${store.storeArea}</th>
+                                        <th>${store.storePrice}</th>
+                                        <th>${store.storeState}</th>
+                                        <th>${store.storeFloor}</th>
+                                        <th>${store.storeType}</th>
+                                        <th>${store.storeIntroduction}</th>
+                                        <th>${store.storeImage}</th>
+                                        <th>${store.storeBrand}</th>
+
 
                                     </tr>
                                 </c:forEach>
@@ -278,17 +276,17 @@
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <th>广场ID</th>
-                                    <th>所在城市</th>
-                                    <th>地址</th>
-                                    <th>总楼层数</th>
-                                    <th>总商铺数</th>
+                                    <th>商铺ID</th>
+                                    <th>所在广场ID</th>
+                                    <th>面积</th>
+                                    <th>租金</th>
                                     <th>状态</th>
+                                    <th>所在楼层</th>
+                                    <th>类型</th>
                                     <th>简介</th>
-                                    <th>广场图片</th>
-                                    <th>地图图片</th>
-                                    <th>停车位</th>
-                                    <th>坐标</th>
+                                    <th>图片</th>
+                                    <th>品牌</th>
+
                                 </tr>
                                 </tfoot>
                             </table>
